@@ -1,0 +1,41 @@
+{
+
+  "TabBarItemsData": [{
+      "id": 1,
+      "title": "主页",
+      "key": "main",
+      "icon_bg_url": "url(/images/home.svg) center center /  21px 21px no-repeat",
+      "sele_bg_url": "url(/images/home1.svg) center center /  21px 21px no-repeat",
+      "selectedPath": "main",
+      "selectedTab":"blueTab"
+    },
+    {
+      "id": 2,
+      "title": "资讯",
+      "key": "news",
+      "icon_bg_url": "url(/images/zixun1.svg) center center /  21px 21px no-repeat",
+      "sele_bg_url": "url(/images/zixun.svg) center center /  21px 21px no-repeat",
+      "selectedPath": "news",
+      "selectedTab":"redTab"
+    },
+    {
+      "id": 3,
+      "title": "微聊",
+      "key": "chat",
+      "icon_bg_url": "url(/images/home.svg) center center /  21px 21px no-repeat",
+      "sele_bg_url": "url(/images/home1.svg) center center /  21px 21px no-repeat",
+      "selectedPath": "chat",
+      "selectedTab":"greenTab"
+    },
+    {
+      "id": 4,
+      "title": "我的",
+      "key": "mine",
+      "icon_bg_url": "url(/images/bo.svg) center center /  21px 21px no-repeat",
+      "sele_bg_url": "url(/images/bo1.svg) center center /  21px 21px no-repeat",
+      "selectedPath": "mine",
+      "selectedTab":"yellowTab"
+    }
+  ]
+
+}

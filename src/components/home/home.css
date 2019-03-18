@@ -1,0 +1,19 @@
+.iconn{
+    width: '22px';
+    height:'22px';
+    background:'url("../../../public/images/11.png") center center /  21px 21px no-repeat'
+}
+.am-tab-bar-bar {
+    position: fixed;
+    box-sizing: border-box;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    transition-duration: .2s;
+    z-index: 100;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-items: center;
+    align-items: center;
+    bottom: 0;
+}

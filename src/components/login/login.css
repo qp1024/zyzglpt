@@ -1,0 +1,15 @@
+.am-flexbox-item {
+  width: 100%;
+}
+.am-navbar-title{
+  font-size: 2rem;
+}
+.am-list{
+  height:60%;
+}
+.am-list-item.am-input-item{
+  height:68px;
+}
+.am-navbar-dark{
+  height:60px;
+}
