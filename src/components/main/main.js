@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Carousel,WingBlank,SearchBar,Grid,NoticeBar,Icon,Card, Badge} from 'antd-mobile'
+import { Carousel,WingBlank,WhiteSpace,SearchBar,Grid,NoticeBar,Icon,Card, Badge} from 'antd-mobile'
 import axios from '../../http'
 //搜索框配置
 // 轮播配置
 const badgeStyle = {
   marginLeft: 12,
-  padding: '0 3px',
+  padding: '0 2px',
   backgroundColor: '#fff',
   borderRadius: 2,
   color: '#f19736',
@@ -13,13 +13,14 @@ const badgeStyle = {
 }
 const thumbStyle = {
   width: '125px',
-  height: '95px'
+  height: '80px'
 }
 class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imagesData:[],
+      // imagesData:[],
+      data1:['1', '2', '3'],
       menuData:[],
       infoData: [],
       faqData:[],
@@ -50,10 +51,34 @@ class Main extends Component {
     }
     return temp
   }
+  //点击展示详情
+  changeMenuTab(el){
+    const {history}=this.props
+    const {text,icon,id}=el
+    switch(id){
+      case 1:
+      case 2:
+      case 3:
+      case 5:
+          history.push('/detail',{query:{params:{text:text,id:id}}})
+      break
+      case 4:
+        history.push('/login')
+      break
+      case 6:
+        history.push('/cal')
+    }
+    console.log(el,111)
+  }
   // 轮播图发请求,发过请求之后把数据接收遍历,然后赋值给模板
   componentDidMount= async ()=> {
     // 走马灯发请求
-    let imagesData =this.getHomeData(`homes/swipe`)
+    // let imagesData =this.getHomeData(`homes/swipe`)
+    setTimeout(() => {
+      this.setState({
+        data1: ['1', '2', '3'],
+      });
+    }, 100);
     //grid九宫格
     let menuData=this.getHomeData(`homes/menu`)
     //通知栏信息
@@ -62,18 +87,19 @@ class Main extends Component {
     let faqData=this.getHomeData(`homes/faq`)
     //list长列表
     let listData=this.getHomeData(`homes/house`)
-    const dataList=await Promise.all([imagesData,menuData,infoData,faqData,listData])
+    const dataList=await Promise.all([menuData,infoData,faqData,listData])
     this.setState({
-      imagesData:dataList[0],
-      menuData:dataList[1],
-      infoData:dataList[2],
-      faqData:dataList[3],
-      listData:dataList[4]
+      // imagesData:dataList[0],
+      menuData:dataList[0],
+      infoData:dataList[1],
+      faqData:dataList[2],
+      listData:dataList[3]
     },()=>{
       let data=this.state.menuData.map((item,i)=>{
         return {
           icon:`http://127.0.0.1:8086/public/0${i+1}.png`,
-          text: item.menu_name
+          text: item.menu_name,
+          id:i+1
         }
       })
       let listDataNew=this.fn(this.state.listData,2,2,3)
@@ -84,33 +110,8 @@ class Main extends Component {
     })
   }
 
- 
-
   render() {
-    //走马灯渲染模板引擎
-    const imagesDataTamplate=this.state.imagesData.map((item,i)=>{
-      return (
-      <a
-      key={i}
-      href="/"
-      style={{
-        display: 'inline-block',
-        width: '100%',
-        height: this.state.imgHeight
-      }}
-    >
-      <img
-        src={item.original}
-        alt="图片加载中"
-        style={{ width: '100%', verticalAlign: 'top' }}
-        onLoad={() => {
-          window.dispatchEvent(new Event('resize'))
-          this.setState({ imgHeight: 'auto' })
-        }}
-      />
-    </a>
-      )
-    })
+  
   // 通知栏模板
   const infoTemplate=this.state.infoData.map((item,i)=>{
     return (
@@ -152,8 +153,7 @@ class Main extends Component {
       return (
         <Card key={j}>
         <Card.Header
-          // title="This is title"
-          thumb="http://127.0.0.1:8086/public/home.png"
+          thumb={`http://127.0.0.1:8086/public/${j+1}.png`}
           thumbStyle={thumbStyle}
           extra={
             <div>
@@ -179,19 +179,47 @@ class Main extends Component {
     <SearchBar placeholder="Seach" />
     <WingBlank>
     {/* 轮播模板 */}
-    <Carousel infinite autoplay={true}>{ imagesDataTamplate}</Carousel>
+   
+    <Carousel
+          autoplay={true}
+          infinite
+        >
+          {this.state.data1.map(val => (
+            <a
+              key={val}
+              href="/"
+              style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+            >
+              <img
+                src={`/images/${val}.png`}
+                alt=""
+                style={{ width: '100%', verticalAlign: 'top' }}
+                onLoad={() => {
+                  window.dispatchEvent(new Event('resize'));
+                  this.setState({ imgHeight: 'auto' });
+                }}
+              />
+            </a>
+          ))}
+        </Carousel>
     {/* 九宫格菜单 */}
-        <Grid
-        data={this.state.data}
-        isCarousel
-        onClick={_el => console.log(_el)}
-        />
-        {/* 通知栏 */}
-    {infoTemplate}
+    <WhiteSpace size="lg" />
+    <Grid
+    columnNum={3}
+    carouselMaxRow={2}
+    data={this.state.data}
+    isCarousel
+    onClick={el=>{
+      this.changeMenuTab(el)
+    }}
+    />
+     <WhiteSpace size="lg" />
+    {/* 通知栏 */}
+    {/* {infoTemplate} */}
     {/* 通知栏问答 */}
     {faqTemplate}
     {/* 长列表模板 */}
-    {listDataNewTemplate}
+    {/* {listDataNewTemplate} */}
     </WingBlank>
     <div style={{height:'50px'}}></div>
     </div>

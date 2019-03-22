@@ -1,0 +1,8 @@
+.ReactVirtualized__Grid__innerScrollContainer{
+    width: auto;
+    height: 300px;
+    max-width: 375px;
+    max-height: 300px;
+    overflow:inherit !important;
+    position: relative;
+}

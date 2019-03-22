@@ -39,6 +39,7 @@ class Login extends Component {
     if (meta.status === 200) {
       //保存token
       localStorage.setItem('token',data.token)
+      localStorage.setItem('uid',data.uid)
       // 进入home
       history.push('/')
     } else {

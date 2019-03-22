@@ -18,14 +18,14 @@ class Home extends Component{
       hidden: false,
     }
   }
-  renderContent = () => {
+  renderContent = (name) => {
     let selectedTab=this.state.selectedTab
     if(selectedTab==='blueTab'){
-      return (<div><Main/></div>)
+      return (<div><Main history={this.props.history}/></div>)
     }else if(selectedTab==='redTab'){
-      return (<div><News /></div>)
+      return (<div><News title={name}/></div>)
     }else if(selectedTab==='greenTab'){
-      return (<div><Chat /></div>)
+      return (<div><Chat title={name} history={this.props.history}/></div>)
     }else if(selectedTab==='yellowTab'){
       return (<div> <Mine /></div>)
     }
@@ -63,7 +63,7 @@ class Home extends Component{
           })
         }}
       >
-        {this.renderContent()}
+        {this.renderContent(item.title)}
       </TabBar.Item>
       )
     })
