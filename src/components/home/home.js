@@ -21,13 +21,13 @@ class Home extends Component{
   renderContent = (name) => {
     let selectedTab=this.state.selectedTab
     if(selectedTab==='blueTab'){
-      return (<div><Main history={this.props.history}/></div>)
+      return (<div><Main title={name} history={this.props.history}/></div>)
     }else if(selectedTab==='redTab'){
       return (<div><News title={name}/></div>)
     }else if(selectedTab==='greenTab'){
       return (<div><Chat title={name} history={this.props.history}/></div>)
     }else if(selectedTab==='yellowTab'){
-      return (<div> <Mine /></div>)
+      return (<div> <Mine history={this.props.history}/></div>)
     }
   }
 

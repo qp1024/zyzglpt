@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Carousel,WingBlank,WhiteSpace,SearchBar,Grid,NoticeBar,Icon,Card, Badge} from 'antd-mobile'
+import { Carousel,WingBlank,WhiteSpace,SearchBar,Grid,NoticeBar,Card, Badge} from 'antd-mobile'
 import axios from '../../http'
 //搜索框配置
 // 轮播配置
@@ -59,14 +59,13 @@ class Main extends Component {
       case 1:
       case 2:
       case 3:
+      case 4:
       case 5:
           history.push('/detail',{query:{params:{text:text,id:id}}})
       break
-      case 4:
-        history.push('/login')
-      break
+        // history.push('/cal')
       case 6:
-        history.push('/cal')
+        history.push('/login')
     }
     console.log(el,111)
   }
@@ -146,7 +145,7 @@ class Main extends Component {
     </Card>
     )
   })
-  faqTemplate = [<b key='b'>列表问答</b>, ...faqTemplate]
+  faqTemplate = [<b key='b'></b>, ...faqTemplate]
   //listdata长列表渲染
   const listDataNewTemplate=this.state.listDataNew.map((item1,i)=>{
     let listDataNewTemplate2=item1.map((item2,j)=>{
@@ -167,7 +166,7 @@ class Main extends Component {
       </Card>
       )
     })
-    let titles = ['最新开盘', '二手精选', '组个家']
+    let titles = ['最新', '精选', '组个']
     return (
       <div key={i}>
       <b key={i}>{titles[i]}</b>
@@ -177,6 +176,9 @@ class Main extends Component {
   })
     return <div>
     <SearchBar placeholder="Seach" />
+    {/* <NavBar>
+      <span>{this.props.title}</span>
+    </NavBar> */}
     <WingBlank>
     {/* 轮播模板 */}
    

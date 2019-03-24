@@ -5,10 +5,8 @@ import {
   Card,
   SegmentedControl,
   Tabs,
-  WingBlank,
   Button,
-  InputItem,
-  WhiteSpace
+  InputItem
 } from 'antd-mobile'
 const tabs = [
     { title: '公积金贷款' },

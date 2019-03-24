@@ -16,10 +16,10 @@ const Chatlist = props => {
       <li
         key={item.id}
         className={
-          item.from_user !== uid ? 'chat-info-left' : 'chat-info-right'
+          item.from_user !== uid ? 'chat-info-right' : 'chat-info-left'
         }
       >
-        <img src={'http://127.0.0.1:8086/' + item.avatar} alt="" />
+        <img src={item.avatar} alt="" />
         <span className={'info'}>{item.chat_msg}</span>
       </li>
     )

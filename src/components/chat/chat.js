@@ -34,13 +34,16 @@ class Chat extends Component {
   render() {
     const listContet = this.state.list.map(item => {
       // console.log(item)
+      let getLocalTime=(n)=>{
+        return new Date(parseInt(n) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+      }
       return (
         <li key={item.id} onClick={this.showChatwindow.bind(this, item)}>
           <div className="avarter">
-            <img src={'http://127.0.0.1:8086/' + item.avatar} alt="avarter" />
+            <img src={item.avatar} alt="avarter" />
             <span className="name">{item.username}</span>
             <span className="info">{item.chat_msg}</span>
-            <span className="time">{item.ctime}</span>
+            <span className="time">{getLocalTime(item.ctime)}</span>
           </div>
         </li>
       )
